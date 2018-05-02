@@ -1,0 +1,9 @@
+<div *ngIf="beer" class="svg-container center">
+  <svg width="100%" viewBox="0 0 3189 1890">
+      <rect id="rect-background" x="0" y="0" width="3189" height="1890" [ngStyle]="{'fill':this.backgroundFill }" />
+      <polygon id="rect-centre" points="1594.5,0 2539.5,945 1594.5,1890 649.5,945" width="1336.43" height="1336.43" [ngStyle]="{'fill':this.rectFill }" />
+       <circle cx="1594.5" cy="945" r="180" [ngStyle]="{'fill':this.circleFill }" />
+       <image x="50%" y="50%" width="512" height="512" xlink:href="beer.picture"></image>
+  </svg>
+</div>
+<h3 *ngIf="!beer" class="center">Problème label...</h3>

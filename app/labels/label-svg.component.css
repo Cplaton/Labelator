@@ -1,0 +1,14 @@
+
+#rect-centre {
+  /* transform-origin: top left;
+  transform: rotate(45deg); */
+}
+
+.svg-container {
+display: inline-block;
+position: relative;
+width: 100%;
+vertical-align: middle;
+padding-top: 2.5%;
+overflow: hidden;
+}
