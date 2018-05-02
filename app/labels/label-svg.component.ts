@@ -34,21 +34,21 @@ export class LabelSvgComponent implements OnInit {
   }
 
   private setBackgroundColor(){
-    let hue=this.typeToColor(this.beer.types);
+    let hue=(this.typeToColor(this.beer.types)*(45-this.beer.ebc))%360;
     let saturation=(this.beer.alcool>=12?100:100*(this.beer.alcool/12.0));
-    let lightness=Math.round(50+30*((45-this.beer.ebc)/45)+10*((60-this.beer.ibu)/60));
+    let lightness=Math.round(50+40*((45-this.beer.ebc)/45)+10*((60-this.beer.ibu)/60));
     this.backgroundFill="hsl("+hue+","+saturation+"%,"+lightness+"%)";
   }
 
   private setRectColor(){
-    let hue=(this.typeToColor(this.beer.types)+180)%360;
+    let hue=(this.typeToColor(this.beer.types)*(45-this.beer.ebc)+180)%360;
     let saturation=(this.beer.alcool>=12?100:100*(this.beer.alcool/12.0));
     let lightness=Math.round(50-30*((45-this.beer.ebc)/45)-10*((60-this.beer.ibu)/60));
     this.rectFill="hsl("+hue+","+saturation+"%,"+lightness+"%)";
   }
 
   private setCircleColor(){
-    let hue=(this.typeToColor(this.beer.types)+180)%360;
+    let hue=(this.typeToColor(this.beer.types)*(45-this.beer.ebc)+180)%360;
     let saturation=(this.beer.alcool>=12?100:100*(this.beer.alcool/12.0));
     let lightness=Math.round(50+30*((45-this.beer.ebc)/45)+10*((60-this.beer.ibu)/60));
     this.circleFill="hsl("+hue+","+saturation+"%,"+lightness+"%)";
