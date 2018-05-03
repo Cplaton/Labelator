@@ -15,8 +15,8 @@ export class LabelSvgComponent implements OnInit {
   backgroundFill: string;
   rectFill: string;
   circleFill: string;
-  titleColor: string;
-  textColor: string;
+  titleFill: string;
+  textFill: string;
 
   constructor(
     private beerService: BeerService,
@@ -28,9 +28,11 @@ export class LabelSvgComponent implements OnInit {
     this.setRectColor();
     this.setBackgroundColor();
     this.setCircleColor();
+    this.setTitleColor();
     console.log("background : "+this.backgroundFill);
     console.log("rect : "+this.rectFill);
     console.log("circle : "+this.circleFill);
+    console.log("title : "+this.titleFill);
   }
 
   private setBackgroundColor(){
@@ -52,6 +54,13 @@ export class LabelSvgComponent implements OnInit {
     let saturation=(this.beer.alcool>=12?100:100*(this.beer.alcool/12.0));
     let lightness=Math.round(50+30*((45-this.beer.ebc)/45)+10*((60-this.beer.ibu)/60));
     this.circleFill="hsl("+hue+","+saturation+"%,"+lightness+"%)";
+  }
+
+  private setTitleColor(){
+    let hue=(this.typeToColor(this.beer.types)*(60-this.beer.ibu)+180)%360;
+    let saturation=(this.beer.alcool>=12?100:100*(this.beer.alcool/12.0));
+    let lightness=Math.round(50+30*((45-this.beer.ebc)/45)+10*((60-this.beer.ibu)/60));
+    this.titleFill="hsl("+hue+","+saturation+"%,"+lightness+"%)";
   }
 
   private typeToColor(type: Array<string>): number {

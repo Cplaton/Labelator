@@ -1,9 +1,13 @@
 <div *ngIf="beer" class="svg-container center">
   <svg width="100%" viewBox="0 0 3189 1890">
-      <rect id="rect-background" x="0" y="0" width="3189" height="1890" [ngStyle]="{'fill':this.backgroundFill }" />
-      <polygon id="rect-centre" points="1594.5,0 2539.5,945 1594.5,1890 649.5,945" width="1336.43" height="1336.43" [ngStyle]="{'fill':this.rectFill }" />
-       <circle cx="1594.5" cy="945" r="180" [ngStyle]="{'fill':this.circleFill }" />
-       <image x="1529.5" y="880" width="130" height="130" [attr.xlink:href]="beer.picture"></image>
+    <rect id="rect-background" x="0" y="0" width="3189" height="1890" [ngStyle]="{'fill':this.backgroundFill }" />
+    <polygon id="rect-centre" points="1594.5,0 2539.5,945 1594.5,1890 649.5,945" width="1336.43" height="1336.43" [ngStyle]="{'fill':this.rectFill }" />
+    <circle cx="1594.5" cy="945" r="180" [ngStyle]="{'fill':this.circleFill }" />
+    <image x="1529.5" y="880" width="130" height="130" [attr.xlink:href]="beer.picture"></image>
+    <text class="title" x="1594.5" y="1400" alignment-baseline="middle" text-anchor="middle" font-family='Amatic SC' font-weight='bold' font-size="150"
+    [ngStyle]="{'fill':this.titleFill }">{{ beer.name }}</text>
+    <text class="subtitle" x="1594.5" y="1500" alignment-baseline="middle" text-anchor="middle" font-family='Amatic SC' font-weight='normal' font-size="80"
+    [ngStyle]="{'fill':this.titleFill }">{{ beer.types }}</text>
   </svg>
 </div>
 <h3 *ngIf="!beer" class="center">Problème label...</h3>
