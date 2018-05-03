@@ -8,6 +8,8 @@
     [ngStyle]="{'fill':this.titleFill }">{{ beer.name }}</text>
     <text class="subtitle" x="1594.5" y="1500" alignment-baseline="middle" text-anchor="middle" font-family='Amatic SC' font-weight='normal' font-size="80"
     [ngStyle]="{'fill':this.titleFill }">{{ beer.types }}</text>
+    <text class="subtitle" x="1594.5" y="1780" alignment-baseline="middle" text-anchor="middle" font-family='Amatic SC' font-weight='bold' font-size="90"
+    [ngStyle]="{'fill':this.titleFill }">{{ beer.alcool }}%</text>
   </svg>
 </div>
 <h3 *ngIf="!beer" class="center">Problème label...</h3>
