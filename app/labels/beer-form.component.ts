@@ -11,7 +11,7 @@ import { Beer } from './beer';
 export class BeerFormComponent implements OnInit {
 
   @Input() beer: Beer; // propriété d'entrée du composant
-  types: Array<string>; // types possibles d'un pokémon : 'Eau', 'Feu', etc ...
+  types: Array<string>; // types possibles d'une bière
 
   constructor(
     private beerService: BeerService,
@@ -22,14 +22,14 @@ export class BeerFormComponent implements OnInit {
     this.types = this.beerService.getBeerTypes();
   }
 
-  // Détermine si le type passé en paramètres appartient ou non au pokémon en cours d'édition.
+  // Détermine si le type passé en paramètres appartient ou non à la bière en cours d'édition.
   hasType(type: string): boolean {
     let index = this.beer.types.indexOf(type);
     if (~index) return true;
     return false;
   }
 
-  // Méthode appelée lorsque l'utilisateur ajoute ou retire un type au pokémon en cours d'édition.
+  // Méthode appelée lorsque l'utilisateur ajoute ou retire un type à la bière en cours d'édition.
   selectType($event: any, type: string): void {
     let checked = $event.target.checked;
     if ( checked ) {

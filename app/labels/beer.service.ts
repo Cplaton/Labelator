@@ -20,6 +20,10 @@ export class BeerService {
     }
   }
 
+  addBeer(element: beer): number{
+      return BEERS.push(element);
+  }
+
   // types de bière possible
   getBeerTypes(): Array<string> {
     return [
