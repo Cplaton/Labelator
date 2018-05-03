@@ -75,7 +75,7 @@ export class ListBeerComponent implements OnInit {
 		});
 		this.getBeer();
 		console.log('Vers la création d\'une nouvelle bière : '+this.beers[this.beers.length-1]);
-		let link = ['/beer/edit', this.beers[this.beers.length-1].id];
+		let link = ['/beer/edit', index];
 		this.router.navigate(link);
 	}
 

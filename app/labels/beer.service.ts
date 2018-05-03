@@ -20,7 +20,7 @@ export class BeerService {
     }
   }
 
-  addBeer(element: beer): number{
+  addBeer(element: Beer): number{
       return BEERS.push(element);
   }
 
