@@ -89,6 +89,21 @@
           </div>
         </div>
 
+        <div class="form-group">
+          <label for="text">Composition</label>
+          <textarea class="form-control" id="text"
+                 pattern="^.+$"
+                 required
+                 [(ngModel)]="beer.text" name="text"
+                 #text="ngModel">
+          </textarea>
+
+           <div [hidden]="text.valid || text.pristine"
+               class="card-panel red accent-1">
+               Composition ou description de la bière incorrecte.
+          </div>
+        </div>
+
         <!-- Beer types -->
         <div class="form-group">
           <label for="types">Types</label>

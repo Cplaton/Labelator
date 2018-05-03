@@ -4,6 +4,10 @@
   transform: rotate(45deg); */
 }
 
+.compo {
+  writing-mode:tb;
+  glyph-orientation-vertical:0;
+}
 .svg-container {
 display: inline-block;
 position: relative;

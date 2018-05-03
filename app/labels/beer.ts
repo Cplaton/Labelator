@@ -5,6 +5,7 @@ export class Beer {
   alcool: number;
   name: string;
   picture: string;
+  text: string;
   types: Array<string>;
   created: Date;
   seed: number;

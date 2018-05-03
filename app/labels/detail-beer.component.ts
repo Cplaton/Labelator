@@ -25,7 +25,7 @@ import { BeerService } from './beer.service';
             </tr>
 						<tr>
 							<td>Alcool</td>
-							<td><strong>{{ beer.alcool }}</strong></td>
+							<td><strong>{{ beer.alcool }}%</strong></td>
 						</tr>
             <tr>
               <td>EBC</td>

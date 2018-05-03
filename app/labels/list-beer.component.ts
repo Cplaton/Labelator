@@ -16,7 +16,8 @@ import { BeerService } from './beer.service';
             </div>-->
             <div class="card-stacked">
               <div class="card-content">
-                <p> <img [src]="beer.picture" /> {{ beer.name }} </p>
+							<span class="card-title">{{ beer.name }} </span>
+                <p> <img [src]="beer.picture" /> </p>
                 <p><small>{{ beer.created | date:"dd/MM/yyyy" }}</small></p>
                 <span *ngFor='let type of beer.types' class="{{ type | beerTypeColor }}">{{ type }}</span>
               </div>
@@ -64,11 +65,12 @@ export class ListBeerComponent implements OnInit {
 	addBeer():void {
 		let index = this.beerService.addBeer({
 			id: this.beers.length+1,
-			name: " ",
+			name: "",
 			ibu: 0,
 			ebc: 0,
 			alcool: 0,
 			picture: "",
+			text: "",
 			types: [],
 			created: new Date(),
 			seed: Math.floor(Math.random() * 65536)

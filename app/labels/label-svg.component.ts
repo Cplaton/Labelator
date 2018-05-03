@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BeerService} from './beer.service';
 import { Beer } from './beer';
@@ -11,12 +11,14 @@ import { Beer } from './beer';
 export class LabelSvgComponent implements OnInit {
 
   @Input() beer: Beer; // propriété d'entrée du composant
+  @ViewChild('svgImg') svgImg: ElementRef; //pour récupérer l'élément SVG
   types: Array<string>;
   backgroundFill: string;
   rectFill: string;
   circleFill: string;
   titleFill: string;
   textFill: string;
+  link: string;
 
   constructor(
     private beerService: BeerService,
@@ -33,31 +35,37 @@ export class LabelSvgComponent implements OnInit {
     console.log("rect : "+this.rectFill);
     console.log("circle : "+this.circleFill);
     console.log("title : "+this.titleFill);
+
   }
 
+  ngAfterViewInit() {
+      console.log(this.svgImg.nativeElement);
+      this.link = 'data:image/svg+xml;base64,' + btoa(this.svgImg.nativeElement.outerHTML);
+    }
+
   private setBackgroundColor(){
-    let hue=(this.typeToColor(this.beer.types)*(45-this.beer.ebc))%360;
+    let hue=(this.typeToColor(this.beer.types)*(45-this.beer.ebc)*this.beer.name.length)%360;
     let saturation=(this.beer.alcool>=12?100:100*(this.beer.alcool/12.0));
     let lightness=Math.round(50+40*((45-this.beer.ebc)/45)+10*((60-this.beer.ibu)/60));
     this.backgroundFill="hsl("+hue+","+saturation+"%,"+lightness+"%)";
   }
 
   private setRectColor(){
-    let hue=(this.typeToColor(this.beer.types)*(45-this.beer.ebc)+180)%360;
+    let hue=(this.typeToColor(this.beer.types)*(45-this.beer.ebc)*this.beer.name.length+180)%360;
     let saturation=(this.beer.alcool>=12?100:100*(this.beer.alcool/12.0));
     let lightness=Math.round(50-30*((45-this.beer.ebc)/45)-10*((60-this.beer.ibu)/60));
     this.rectFill="hsl("+hue+","+saturation+"%,"+lightness+"%)";
   }
 
   private setCircleColor(){
-    let hue=(this.typeToColor(this.beer.types)*(45-this.beer.ebc)+180)%360;
+    let hue=(this.typeToColor(this.beer.types)*(45-this.beer.ebc)*this.beer.name.length+180)%360;
     let saturation=(this.beer.alcool>=12?100:100*(this.beer.alcool/12.0));
     let lightness=Math.round(50+30*((45-this.beer.ebc)/45)+10*((60-this.beer.ibu)/60));
     this.circleFill="hsl("+hue+","+saturation+"%,"+lightness+"%)";
   }
 
   private setTitleColor(){
-    let hue=(this.typeToColor(this.beer.types)*(60-this.beer.ibu)+180)%360;
+    let hue=(this.typeToColor(this.beer.types)*(60-this.beer.ibu)*this.beer.name.length+180)%360;
     let saturation=(this.beer.alcool>=12?100:100*(this.beer.alcool/12.0));
     let lightness=Math.round(50+30*((45-this.beer.ebc)/45)+10*((60-this.beer.ibu)/60));
     this.titleFill="hsl("+hue+","+saturation+"%,"+lightness+"%)";

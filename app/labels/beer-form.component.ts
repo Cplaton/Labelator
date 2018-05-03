@@ -20,6 +20,25 @@ export class BeerFormComponent implements OnInit {
   ngOnInit() {
     // Initialisation de la propriété types
     this.types = this.beerService.getBeerTypes();
+    if(this.beer.name=="")
+    {
+      let index = this.beerService.getBeers().indexOf(this.beer, 0);
+      if (index > -1) {
+         this.beerService.getBeers().splice(index, 1);
+      }
+    }
+  }
+
+  hasIndex(index: number): boolean {
+    let found=false
+    for(let i=0;i<this.beerService.getBeers().length;i++)
+    {
+      if(this.beerService.getBeers()[i].id==index)
+      {
+        found=true;
+      }
+    }
+    return found;
   }
 
   // Détermine si le type passé en paramètres appartient ou non à la bière en cours d'édition.
@@ -53,6 +72,11 @@ export class BeerFormComponent implements OnInit {
 
   // La méthode appelée lorsque le formulaire est soumis.
   onSubmit(): void {
+    if(!this.hasIndex(this.beer.id))
+    {
+      console.log("J'ajoute la bière à la liste !"+this.beer.toString());
+      this.beerService.addBeer(this.beer);
+    }
     console.log("Submit form !");
     let link = ['/beer', this.beer.id];
     this.router.navigate(link);
