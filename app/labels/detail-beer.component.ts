@@ -84,10 +84,6 @@ export class DetailBeerComponent implements OnInit {
     });
   }
 
-	ngAfterViewInit() {
-      this.labelSvg.seed=this.beer.seed;
-    }
-
   goBack(): void {
 		let link = ['/beers'];
 		this.router.navigate(link);
