@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
 	<nav>
 	    <div class="nav-wrapper teal">
-	      <a href="#" class="brand-logo center">labels-app</a>
+	      <a href="#" class="brand-logo center">Labelator</a>
 	    </div>
 	</nav>
 	<router-outlet></router-outlet>

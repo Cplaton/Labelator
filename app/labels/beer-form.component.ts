@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BeerService} from './beer.service';
 import { Beer } from './beer';
 
+
 @Component({
   selector: 'beer-form',
   templateUrl: 'app/labels/beer-form.component.html',
@@ -70,6 +71,16 @@ export class BeerFormComponent implements OnInit {
     return true;
   }
 
+  isSeedValid(str:string): boolean{
+    console.log("str = "+str);
+    if (str=="")
+      return true;
+    let real = atob(str);
+    console.log("réelle = "+real);
+    let regex = /(hsl\((\d+),\s*([\d.]+)%,\s*([\d.]+)%\);){3}(hsl\((\d+),\s*([\d.]+)%,\s*([\d.]+)%\))/g
+    console.log("return = "+regex.test(real));
+    return regex.test(real);
+  }
   // La méthode appelée lorsque le formulaire est soumis.
   onSubmit(): void {
     if(!this.hasIndex(this.beer.id))

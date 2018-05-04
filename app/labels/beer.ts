@@ -8,5 +8,5 @@ export class Beer {
   text: string;
   types: Array<string>;
   created: Date;
-  seed: number;
+  seed: string;
 }

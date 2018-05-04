@@ -7,7 +7,7 @@ import { BeerService } from './beer.service';
 @Component({
 	selector: 'list-beer',
 	template: `
-    <h1 class='center'>Bières</h1>
+    <h2 class='center'>Mes Bières</h2>
       <div class='container'>
         <div class="row">
         <div *ngFor='let beer of beers' class="col s6 m4">
@@ -73,7 +73,7 @@ export class ListBeerComponent implements OnInit {
 			text: "",
 			types: [],
 			created: new Date(),
-			seed: Math.floor(Math.random() * 65536)
+			seed: ""
 		});
 		this.getBeer();
 		console.log('Vers la création d\'une nouvelle bière : '+this.beers[this.beers.length-1]);

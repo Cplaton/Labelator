@@ -8,6 +8,7 @@ import { Beer } from './beer';
   templateUrl: 'app/labels/label-svg.component.html',
   styleUrls: ['app/labels/label-svg.component.css']
 })
+
 export class LabelSvgComponent implements OnInit {
 
   @Input() beer: Beer; // propriété d'entrée du composant
@@ -19,6 +20,7 @@ export class LabelSvgComponent implements OnInit {
   titleFill: string;
   textFill: string;
   link: string;
+  seed: string = "";
 
   constructor(
     private beerService: BeerService,
@@ -27,15 +29,44 @@ export class LabelSvgComponent implements OnInit {
   ngOnInit() {
     // Initialisation de la propriété types
     this.types = this.beerService.getBeerTypes();
-    this.setRectColor();
-    this.setBackgroundColor();
-    this.setCircleColor();
-    this.setTitleColor();
+    if(this.beer.seed=="")
+      this.reRoll();
+    else
+      this.seedToColor(this.beer.seed);
     console.log("background : "+this.backgroundFill);
     console.log("rect : "+this.rectFill);
     console.log("circle : "+this.circleFill);
     console.log("title : "+this.titleFill);
+  }
 
+  reRoll(){
+    this.backgroundFill=this.beerService.randomizeBackgroundColor(this.beer);
+    this.rectFill=this.beerService.randomizeRectColor(this.beer);
+    this.circleFill=this.beerService.randomizeCircleColor(this.beer);
+    this.titleFill=this.beerService.randomizeTitleColor(this.beer);
+    let strArray = [this.backgroundFill,this.rectFill,this.circleFill,this.titleFill];
+    this.seed=this.beerService.setBeerSeed(this.beer,strArray);
+  }
+
+  private rawToCssStyle(str: string): string{
+    let sub = str.split(',');
+    return "hsl("+sub[0]+","+sub[1]+"%,"+sub[1]+"%)";
+  }
+
+  private seedToColor(malt: string){
+    console.log("init seed to color");
+    let colors = atob(malt);
+    let allHsl = colors.split(';');
+    // let result;
+    // for(let i=0; i<allHsl.length; i++)
+    // {
+    //   let sub = allHsl[i].split(',');
+    //   result[i]="hsl("+sub[0]+","+sub[1]+"%,"+sub[1]+"%)";
+    // }
+    this.backgroundFill=allHsl[0];
+    this.rectFill=allHsl[1];
+    this.circleFill=allHsl[2];
+    this.titleFill=allHsl[3];
   }
 
   ngAfterViewInit() {
@@ -43,105 +74,5 @@ export class LabelSvgComponent implements OnInit {
       this.link = 'data:image/svg+xml;base64,' + btoa(this.svgImg.nativeElement.outerHTML);
     }
 
-  private setBackgroundColor(){
-    let hue=(this.typeToColor(this.beer.types)*(45-this.beer.ebc)*this.beer.name.length)%360;
-    let saturation=(this.beer.alcool>=12?100:100*(this.beer.alcool/12.0));
-    let lightness=Math.round(50+40*((45-this.beer.ebc)/45)+10*((60-this.beer.ibu)/60));
-    this.backgroundFill="hsl("+hue+","+saturation+"%,"+lightness+"%)";
-  }
 
-  private setRectColor(){
-    let hue=(this.typeToColor(this.beer.types)*(45-this.beer.ebc)*this.beer.name.length+180)%360;
-    let saturation=(this.beer.alcool>=12?100:100*(this.beer.alcool/12.0));
-    let lightness=Math.round(50-30*((45-this.beer.ebc)/45)-10*((60-this.beer.ibu)/60));
-    this.rectFill="hsl("+hue+","+saturation+"%,"+lightness+"%)";
-  }
-
-  private setCircleColor(){
-    let hue=(this.typeToColor(this.beer.types)*(45-this.beer.ebc)*this.beer.name.length+180)%360;
-    let saturation=(this.beer.alcool>=12?100:100*(this.beer.alcool/12.0));
-    let lightness=Math.round(50+30*((45-this.beer.ebc)/45)+10*((60-this.beer.ibu)/60));
-    this.circleFill="hsl("+hue+","+saturation+"%,"+lightness+"%)";
-  }
-
-  private setTitleColor(){
-    let hue=(this.typeToColor(this.beer.types)*(60-this.beer.ibu)*this.beer.name.length+180)%360;
-    let saturation=(this.beer.alcool>=12?100:100*(this.beer.alcool/12.0));
-    let lightness=Math.round(50+30*((45-this.beer.ebc)/45)+10*((60-this.beer.ibu)/60));
-    this.titleFill="hsl("+hue+","+saturation+"%,"+lightness+"%)";
-  }
-
-  private typeToColor(type: Array<string>): number {
-
-      let color: number;
-      let counter: number;
-      color=0;
-      counter=0;
-      for(let aType of type)
-      {
-        counter++;
-        switch (aType) {
-          case 'Ale':
-          case 'Blonde':
-          case 'Mars':
-          case 'IPA':
-          case 'Pale Ale':
-          case 'Bitter':
-          case 'Mild Ale':
-            color += 50;
-            break;
-          case 'Abbaye':
-          case 'Double':
-          case 'Triple':
-          case 'Quadruple':
-          case 'Trappiste':
-          case 'Saison':
-          case 'Spéciale':
-          case 'Garde':
-          case 'Mars':
-          case 'Cervoise':
-            color += 30;
-            break;
-          case 'Ambrée':
-          case 'Noël':
-          case 'Barley wine':
-            color += 20;
-            break;
-          case 'Brune':
-          case 'Schwarzbier':
-          case 'Porter':
-          case 'Stout':
-            color += 360;
-            break;
-          case 'Lambic':
-          case 'Gueuze':
-          case 'Faro':
-          case 'Sour':
-            color += 130;
-            break;
-          case 'Red Ale':
-            color += 0;
-            break;
-          case 'Blanche':
-          case 'Kölsh':
-          case 'Altbier':
-          case 'Weizenbier':
-          case 'Weinzenbock':
-          case 'Pils':
-          case 'Export':
-          case 'Märzen':
-          case 'Bock':
-          case 'Doppelbock':
-          case 'Eisbock':
-          case 'Rauchbier':
-          case 'Lagger':
-            color += 80;
-            break;
-          default:
-            color += 200;
-            break;
-        }
-    }
-    return Math.round(color/counter);
-  }
 }

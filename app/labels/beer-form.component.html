@@ -124,17 +124,15 @@
 
         <div class="form-group">
           <label for="seed">Seed</label>
-          <input type="number" class="form-control" id="seed"
-                 pattern="^[0-9]{1,5}$"
-                 min=0
-                 max=65535
-                 required
+          <input type="text" class="form-control" id="seed"
+                 pattern="^.*$"
+                 validateSeed
                  [(ngModel)]="beer.seed" name="seed"
                  #seed="ngModel">
-
-           <div [hidden]="seed.valid || seed.pristine"
+                <!--*ngIf="seed.errors" [hidden]="(seed.valid || seed.pristine)"-->
+           <div  [hidden]="(seed.valid || seed.pristine)"
                class="card-panel red accent-1">
-               Valeur incorrecte pour l'échelle de couleur (0-65535).
+               Seed incorrecte.
           </div>
         </div>
 

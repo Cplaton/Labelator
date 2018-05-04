@@ -1,0 +1,47 @@
+""id""{
+  "binouses":[
+{
+  "id": 1,
+  "name": "Sorachi Sensei",
+  "ibu": 35,
+  "ebc": 5,
+  "alcool": 6,
+  "picture": "app/labels/assets/glyphicons/png/glyphicons-1-glass.png",
+  "types": ["IPA", "Blanche"],
+  "created": "",
+  "seed": ""
+},
+{
+  "id": 2,
+  "name": "Succelos",
+  "ibu": 10,
+  "ebc": 15,
+  "alcool": 6.5,
+  "picture": "app/labels/assets/glyphicons/png/glyphicons-2-leaf.png",
+  "types": ["Blonde", "Cervoise"],
+  "created": "",
+  "seed": ""
+},
+{
+  "id": 3,
+  "name": "Super SMASH",
+  "ibu": 20,
+  "ebc": 12,
+  "alcool": 4.5,
+  "picture": "app/labels/assets/glyphicons/png/glyphicons-1-glass.png",
+  "types": ["Blonde"],
+  "created": "",
+  "seed": ""
+},
+{
+  "id": 4,
+  "name": "Speciale",
+  "ibu": 25,
+  "ebc": 75,
+  "alcool": 6,
+  "picture": "app/labels/assets/glyphicons/png/glyphicons-1-glass.png",
+  "types": ["Porter", "Speciale","Ale"],
+  "created": "",
+  "seed": ""
+}]
+}

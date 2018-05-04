@@ -7,6 +7,7 @@ import { ShadowCardDirective }    from './shadow-card.directive';
 import { BeerTypeColorPipe }   from './beer-type-color.pipe';
 
 import { FormsModule }   from '@angular/forms';
+import { SeedValidator } from './seed.directive';
 import { EditBeerComponent }   from './edit-beer.component';
 import { BeerFormComponent }   from './beer-form.component';
 import { LabelSvgComponent }   from './label-svg.component';
@@ -27,6 +28,7 @@ import { BeerService }      from './beer.service';
     BeerFormComponent,
     LabelSvgComponent,
     ShadowCardDirective,
+    SeedValidator,
     BeerTypeColorPipe
   ],
   providers: [BeerService]

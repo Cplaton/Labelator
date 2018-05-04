@@ -12,7 +12,7 @@ export const BEERS: Beer[] = [
 		text: "Ingrédients : ...",
 		types: ["IPA", "Blanche"],
 		created: new Date(),
-		seed: Math.floor(Math.random() * 65536)
+		seed: ""
 	},
 	{
 		id: 2,
@@ -24,7 +24,7 @@ export const BEERS: Beer[] = [
 		text: "Ingrédients : ...",
 		types: ["Blonde", "Cervoise"],
 		created: new Date(),
-		seed: Math.floor(Math.random() * 65536)
+		seed: ""
 	},
 	{
 		id: 3,
@@ -36,7 +36,7 @@ export const BEERS: Beer[] = [
 		text: "Ingrédients : ...",
 		types: ["Blonde"],
 		created: new Date(),
-		seed: Math.floor(Math.random() * 65536)
+		seed: ""
 	},
 	{
 		id: 4,
@@ -48,6 +48,6 @@ export const BEERS: Beer[] = [
 		text: "Ingrédients : ...",
 		types: ["Porter", "Speciale","Ale"],
 		created: new Date(),
-		seed: Math.floor(Math.random() * 65536)
+		seed: ""
 	}
 ];

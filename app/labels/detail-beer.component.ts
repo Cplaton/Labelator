@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Beer } from './beer';
 import { BEERS } from './mock-beers';
 import { BeerService } from './beer.service';
+import { LabelSvgComponent } from './label-svg.component';
 
 @Component({
 	selector: 'detail-beer',
@@ -12,12 +13,12 @@ import { BeerService } from './beer.service';
   <h2 class="header center">{{ beer.name }}</h2>
   <div class="card horizontal hoverable">
     <div class="card-image">
-		<label-svg [beer]="beer"></label-svg>
+		<label-svg id="labelSvg" [beer]="beer" #labelSvg></label-svg>
       <!--<img [src]="beer.picture">-->
     </div>
     <div class="card-stacked">
-      <div class="card-content">
-        <table class="bordered striped">
+      <div class="card-content" >
+        <table class="bordered striped" >
           <tbody>
             <tr>
               <td>Nom</td>
@@ -41,6 +42,10 @@ import { BeerService } from './beer.service';
                 <span *ngFor="let type of beer.types" class="{{ type | beerTypeColor }}">{{ type }}</span>
               </td>
             </tr>
+						<tr>
+              <td>Seed</td>
+            	<td >{{ labelSvg.seed.substring(0,15) }}...</td>
+            </tr>
             <tr>
               <td>Date de création</td>
               <td><em>{{ beer.created | date:"dd/MM/yyyy" }}</em></td>
@@ -52,6 +57,8 @@ import { BeerService } from './beer.service';
       <div class="card-action">
         <a (click)="goBack()">Retour</a>
 				<a (click)="goEdit(beer)">Editer</a>
+				<a (click)="reRoll()">Générer</a>
+				<a (click)="saveImg()">Sauver</a>
       </div>
     </div>
   </div>
@@ -63,6 +70,7 @@ import { BeerService } from './beer.service';
 export class DetailBeerComponent implements OnInit {
 
   beer: Beer = null;
+	@ViewChild('labelSvg') labelSvg: LabelSvgComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -76,10 +84,22 @@ export class DetailBeerComponent implements OnInit {
     });
   }
 
+	ngAfterViewInit() {
+      this.labelSvg.seed=this.beer.seed;
+    }
+
   goBack(): void {
 		let link = ['/beers'];
 		this.router.navigate(link);
   }
+
+	reRoll(): void {
+		this.labelSvg.reRoll();
+  }
+
+	saveImg():void{
+		this.beer.seed = this.labelSvg.seed;
+	}
 
 	// On crée une méthode qui s'occupe de la redirection
 	goEdit(beer: Beer): void {
