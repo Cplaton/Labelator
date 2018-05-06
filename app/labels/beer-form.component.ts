@@ -88,7 +88,7 @@ export class BeerFormComponent implements OnInit {
       console.log("J'ajoute la bière à la liste !"+this.beer.toString());
       this.beerService.addBeer(this.beer);
     }
-    console.log("Submit form !");
+    console.log("Submit form ! : "+ JSON.stringify(this.beerService.getBeers()));
     let link = ['/beer', this.beer.id];
     this.router.navigate(link);
   }

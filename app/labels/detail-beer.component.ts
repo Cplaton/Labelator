@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Beer } from './beer';
 import { BEERS } from './mock-beers';
@@ -13,7 +13,7 @@ import { LabelSvgComponent } from './label-svg.component';
   <h2 class="header center">{{ beer.name }}</h2>
   <div class="card horizontal hoverable">
     <div class="card-image">
-		<label-svg id="labelSvg" [beer]="beer" #labelSvg></label-svg>
+		<label-svg id="labelSvg" [beer]="beer" (click)="downloadImg()" #labelSvg></label-svg>
       <!--<img [src]="beer.picture">-->
     </div>
     <div class="card-stacked">
@@ -62,6 +62,7 @@ import { LabelSvgComponent } from './label-svg.component';
       </div>
     </div>
   </div>
+	<object id="imgExport" #imgExport></object>
   </div>
   </div>
   <h4 *ngIf='!beer' class="center">Aucune bière à afficher !</h4>
@@ -71,6 +72,7 @@ export class DetailBeerComponent implements OnInit {
 
   beer: Beer = null;
 	@ViewChild('labelSvg') labelSvg: LabelSvgComponent;
+	@ViewChild('imgExport') imgExport: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -82,7 +84,17 @@ export class DetailBeerComponent implements OnInit {
       let id = +params['id'];
       this.beer = this.beerService.getBeer(id); // on utilise le service pour récupérer une binouse en fonction de son identifiant.
     });
+		// this.imgExport.nativeElement.src=this.labelSvg.link;
   }
+
+	ngAfterViewInit() {
+      console.log("After detail view init");
+      this.imgExport.nativeElement.data=this.labelSvg.link;
+    }
+
+	downloadImg(): void {
+		console.log("now downloading");
+	}
 
   goBack(): void {
 		let link = ['/beers'];
