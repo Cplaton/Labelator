@@ -1,0 +1,12 @@
+<div *ngIf="beer" class="center"  style="width:100%;height:auto;display: inline-block;
+position: relative;
+vertical-align: middle;
+padding-top: 2.5%;
+overflow: hidden;">
+  <a [href]="link">
+  <canvas id="canvasImg" width="3189" height="1890" #canvasImg>
+
+  </canvas>
+</a>
+</div>
+<h3 *ngIf="!beer" class="center">Problème label...</h3>

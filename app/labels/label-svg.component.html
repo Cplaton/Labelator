@@ -1,6 +1,11 @@
 <div *ngIf="beer" class="svg-container center" >
   <a [href]="link">
-  <svg id="svgImg" width="100%" viewBox="0 0 3189 1890" #svgImg>
+  <svg id="svgImg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" viewBox="0 0 3189 1890" #svgImg>
+    <defs>
+      <style type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Amatic+SC|Oswald:700');
+      </style>
+    </defs>
     <rect id="rect-background" x="0" y="0" width="3189" height="1890" [ngStyle]="{'fill':this.backgroundFill }" />
     <polygon id="rect-centre" points="1594.5,0 2539.5,945 1594.5,1890 649.5,945" width="1336.43" height="1336.43" [ngStyle]="{'fill':this.rectFill }" />
     <circle cx="1594.5" cy="945" r="180" [ngStyle]="{'fill':this.circleFill }" />
@@ -12,7 +17,7 @@
     <text class="subtitle" x="1594.5" y="1780" alignment-baseline="middle" text-anchor="middle" font-family='Amatic SC' font-weight='bold' font-size="90"
     [ngStyle]="{'fill':this.titleFill }">{{ beer.alcool }}%</text>
     <text class="compo" x="200" y="5"  font-family='Oswald' font-weight='normal' font-size="50"
-    [ngStyle]="{'fill':this.rectFill}">{{ beer.text }}</text>
+    [ngStyle]="{'fill':this.rectFill}" style='writing-mode:tb;glyph-orientation-vertical:0;font-family:Oswald;font-weight:normal;font-size:50;'>{{ beer.text }}</text>
   </svg>
 </a>
 </div>

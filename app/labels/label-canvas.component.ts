@@ -4,15 +4,15 @@ import { BeerService} from './beer.service';
 import { Beer } from './beer';
 
 @Component({
-  selector: 'label-svg',
-  templateUrl: 'app/labels/label-svg.component.html',
-  styleUrls: ['app/labels/label-svg.component.css']
+  selector: 'label-canvas',
+  templateUrl: 'app/labels/label-canvas.component.html'
+  // styleUrls: ['app/labels/label-svg.component.css']
 })
 
-export class LabelSvgComponent implements OnInit {
+export class LabelCanvasComponent implements OnInit {
 
   @Input() beer: Beer; // propriété d'entrée du composant
-  @ViewChild('svgImg') svgImg: ElementRef; //pour récupérer l'élément SVG
+  @ViewChild('canvasImg') svgImg: ElementRef; //pour récupérer l'élément SVG
   types: Array<string>;
   backgroundFill: string;
   rectFill: string;

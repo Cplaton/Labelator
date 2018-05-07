@@ -14,7 +14,7 @@ import { LabelSvgComponent } from './label-svg.component';
   <div class="card horizontal hoverable">
     <div class="card-image">
 		<label-svg id="labelSvg" [beer]="beer" (click)="downloadImg()" #labelSvg></label-svg>
-      <!--<img [src]="beer.picture">-->
+      <!--<img [src]="beer.picture">   -->
     </div>
     <div class="card-stacked">
       <div class="card-content" >
@@ -62,7 +62,8 @@ import { LabelSvgComponent } from './label-svg.component';
       </div>
     </div>
   </div>
-	<object id="imgExport" #imgExport></object>
+	<img id="imgExport" #imgExport />
+	<canvas id="canExport" width="3189" height="1890"#canExport > </canvas>
   </div>
   </div>
   <h4 *ngIf='!beer' class="center">Aucune bière à afficher !</h4>
@@ -73,6 +74,7 @@ export class DetailBeerComponent implements OnInit {
   beer: Beer = null;
 	@ViewChild('labelSvg') labelSvg: LabelSvgComponent;
 	@ViewChild('imgExport') imgExport: ElementRef;
+	@ViewChild('canExport') canExport: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -89,7 +91,27 @@ export class DetailBeerComponent implements OnInit {
 
 	ngAfterViewInit() {
       console.log("After detail view init");
-      this.imgExport.nativeElement.data=this.labelSvg.link;
+      this.imgExport.nativeElement.src=this.labelSvg.link;
+			 let canvas = this.canExport.nativeElement;
+			 let ctx = canvas.getContext('2d');
+			 ctx.fillStyle="balck";
+			 ctx.fillRect(0,0,3189,1890);
+
+			 // let image = new Image();
+			 // image.src=this.labelSvg.link;
+			 ctx.drawImage(this.imgExport.nativeElement, 0, 0, 3189, 1890);
+
+			//  image.onload = ( () => {
+			// 	 	console.log("image loaded");
+     //  		ctx.drawImage(image, 0, 0, 3189, 1890);
+			// 		canvas.toBlob( (blob: any) => {
+	   //       	var newImg = document.createElement("img");
+	   //       	var url = URL.createObjectURL(blob);
+	   //       	newImg.onload = ( () => URL.revokeObjectURL(url));
+	   //       newImg.src = url;
+			//  }, "image/jpeg", 0.8);
+		 // });
+			//  image.src=this.labelSvg.link;
     }
 
 	downloadImg(): void {
@@ -103,6 +125,18 @@ export class DetailBeerComponent implements OnInit {
 
 	reRoll(): void {
 		this.labelSvg.reRoll();
+		this.labelSvg.updateLink();
+
+		console.log("After detail view init");
+		this.imgExport.nativeElement.src=this.labelSvg.link;
+		 let canvas = this.canExport.nativeElement;
+		 let ctx = canvas.getContext('2d');
+		 ctx.fillStyle="balck";
+		 ctx.fillRect(0,0,3189,1890);
+
+		 // let image = new Image();
+		 // image.src=this.labelSvg.link;
+		 ctx.drawImage(this.imgExport.nativeElement, 0, 0, 3189, 1890);
   }
 
 	saveImg():void{

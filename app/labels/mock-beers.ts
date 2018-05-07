@@ -9,7 +9,7 @@ export const BEERS: Beer[] = [
 		ebc: 5,
 		alcool: 6,
 		picture: "app/labels/assets/glyphicons/png/glyphicons-1-glass.png",
-		text: "Ingrédients : ...",
+		text: "Ingredients : ...",
 		types: ["IPA", "Blanche"],
 		created: new Date(),
 		seed: ""
@@ -21,7 +21,7 @@ export const BEERS: Beer[] = [
 		ebc: 15,
 		alcool: 6.5,
 		picture: "app/labels/assets/glyphicons/png/glyphicons-2-leaf.png",
-		text: "Ingrédients : ...",
+		text: "Ingredients : ...",
 		types: ["Blonde", "Cervoise"],
 		created: new Date(),
 		seed: ""
@@ -33,7 +33,7 @@ export const BEERS: Beer[] = [
 		ebc: 12,
 		alcool: 4.5,
 		picture: "app/labels/assets/glyphicons/png/glyphicons-1-glass.png",
-		text: "Ingrédients : ...",
+		text: "Ingredients : ...",
 		types: ["Blonde"],
 		created: new Date(),
 		seed: ""
@@ -45,7 +45,7 @@ export const BEERS: Beer[] = [
 		ebc: 75,
 		alcool: 6,
 		picture: "app/labels/assets/glyphicons/png/glyphicons-1-glass.png",
-		text: "Ingrédients : ...",
+		text: "Ingredients : ...",
 		types: ["Porter", "Speciale","Ale"],
 		created: new Date(),
 		seed: ""

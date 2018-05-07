@@ -11,6 +11,7 @@ import { SeedValidator } from './seed.directive';
 import { EditBeerComponent }   from './edit-beer.component';
 import { BeerFormComponent }   from './beer-form.component';
 import { LabelSvgComponent }   from './label-svg.component';
+import { LabelCanvasComponent }   from './label-canvas.component';
 
 import { BeerRoutingModule } from './beer-routing.module';
 import { BeerService }      from './beer.service';
@@ -27,6 +28,7 @@ import { BeerService }      from './beer.service';
     EditBeerComponent,
     BeerFormComponent,
     LabelSvgComponent,
+    LabelCanvasComponent,
     ShadowCardDirective,
     SeedValidator,
     BeerTypeColorPipe
