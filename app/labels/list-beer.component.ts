@@ -12,12 +12,12 @@ import { BeerService } from './beer.service';
         <div class="row">
         <div *ngFor='let beer of beers' class="col s6 m4">
           <div class="card horizontal" (click)="selectBeer(beer)" beer-shadow-card>
-            <!--<div class="card-image">
-            </div>-->
+            <div class="card-image">
+						<img [src]="beer.picture" />
+            </div>
             <div class="card-stacked">
               <div class="card-content">
 							<span class="card-title">{{ beer.name }} </span>
-                <p> <img [src]="beer.picture" /> </p>
                 <p><small>{{ beer.created | date:"dd/MM/yyyy" }}</small></p>
                 <span *ngFor='let type of beer.types' class="{{ type | beerTypeColor }}">{{ type }}</span>
               </div>

@@ -4,6 +4,7 @@ import { Beer } from './beer';
 import { BEERS } from './mock-beers';
 import { BeerService } from './beer.service';
 import { LabelSvgComponent } from './label-svg.component';
+import { LabelCanvasComponent } from './label-canvas.component';
 
 @Component({
 	selector: 'detail-beer',
@@ -13,7 +14,8 @@ import { LabelSvgComponent } from './label-svg.component';
   <h2 class="header center">{{ beer.name }}</h2>
   <div class="card horizontal hoverable">
     <div class="card-image">
-		<label-svg id="labelSvg" [beer]="beer" (click)="downloadImg()" #labelSvg></label-svg>
+		<!--<label-svg id="labelSvg" [beer]="beer" (click)="downloadImg()" #labelSvg></label-svg>-->
+		<label-canvas id="labelCanvas" [beer]="beer" (click)="downloadImg()" #labelCanvas></label-canvas>
       <!--<img [src]="beer.picture">   -->
     </div>
     <div class="card-stacked">
@@ -44,7 +46,7 @@ import { LabelSvgComponent } from './label-svg.component';
             </tr>
 						<tr>
               <td>Seed</td>
-            	<td >{{ labelSvg.seed.substring(0,15) }}...</td>
+            	<td >{{ labelCanvas.seed.substring(0,15) }}...</td>
             </tr>
             <tr>
               <td>Date de création</td>
@@ -55,15 +57,13 @@ import { LabelSvgComponent } from './label-svg.component';
 
       </div>
       <div class="card-action">
-        <a (click)="goBack()">Retour</a>
-				<a (click)="goEdit(beer)">Editer</a>
-				<a (click)="reRoll()">Générer</a>
-				<a (click)="saveImg()">Sauver</a>
+        <a (click)="goBack()" style="cursor:pointer;">Retour</a>
+				<a (click)="goEdit(beer)" style="cursor:pointer;">Editer</a>
+				<a (click)="reRoll()" style="cursor:pointer;">Générer</a>
+				<a (click)="saveImg()" style="cursor:pointer;">Sauver</a>
       </div>
     </div>
   </div>
-	<img id="imgExport" #imgExport />
-	<canvas id="canExport" width="3189" height="1890"#canExport > </canvas>
   </div>
   </div>
   <h4 *ngIf='!beer' class="center">Aucune bière à afficher !</h4>
@@ -72,7 +72,8 @@ import { LabelSvgComponent } from './label-svg.component';
 export class DetailBeerComponent implements OnInit {
 
   beer: Beer = null;
-	@ViewChild('labelSvg') labelSvg: LabelSvgComponent;
+	// @ViewChild('labelSvg') labelSvg: LabelSvgComponent;
+	@ViewChild('labelCanvas') labelCanvas: LabelCanvasComponent;
 	@ViewChild('imgExport') imgExport: ElementRef;
 	@ViewChild('canExport') canExport: ElementRef;
 
@@ -91,27 +92,14 @@ export class DetailBeerComponent implements OnInit {
 
 	ngAfterViewInit() {
       console.log("After detail view init");
-      this.imgExport.nativeElement.src=this.labelSvg.link;
-			 let canvas = this.canExport.nativeElement;
-			 let ctx = canvas.getContext('2d');
-			 ctx.fillStyle="balck";
-			 ctx.fillRect(0,0,3189,1890);
+      // this.imgExport.nativeElement.src=this.labelSvg.link;
+			//  let canvas = this.canExport.nativeElement;
+			//  let ctx = canvas.getContext('2d');
+			//  ctx.fillStyle="balck";
+			//  ctx.fillRect(0,0,3189,1890);
+      //
+			//  ctx.drawImage(this.imgExport.nativeElement, 0, 0, 3189, 1890);
 
-			 // let image = new Image();
-			 // image.src=this.labelSvg.link;
-			 ctx.drawImage(this.imgExport.nativeElement, 0, 0, 3189, 1890);
-
-			//  image.onload = ( () => {
-			// 	 	console.log("image loaded");
-     //  		ctx.drawImage(image, 0, 0, 3189, 1890);
-			// 		canvas.toBlob( (blob: any) => {
-	   //       	var newImg = document.createElement("img");
-	   //       	var url = URL.createObjectURL(blob);
-	   //       	newImg.onload = ( () => URL.revokeObjectURL(url));
-	   //       newImg.src = url;
-			//  }, "image/jpeg", 0.8);
-		 // });
-			//  image.src=this.labelSvg.link;
     }
 
 	downloadImg(): void {
@@ -124,23 +112,26 @@ export class DetailBeerComponent implements OnInit {
   }
 
 	reRoll(): void {
-		this.labelSvg.reRoll();
-		this.labelSvg.updateLink();
-
-		console.log("After detail view init");
-		this.imgExport.nativeElement.src=this.labelSvg.link;
-		 let canvas = this.canExport.nativeElement;
-		 let ctx = canvas.getContext('2d');
-		 ctx.fillStyle="balck";
-		 ctx.fillRect(0,0,3189,1890);
-
-		 // let image = new Image();
-		 // image.src=this.labelSvg.link;
-		 ctx.drawImage(this.imgExport.nativeElement, 0, 0, 3189, 1890);
+		this.labelCanvas.reRoll();
+		this.labelCanvas.reDraw();
+		this.labelCanvas.updateLink();
+		// this.labelSvg.reRoll();
+		// this.labelSvg.updateLink();
+    //
+		// console.log("After detail view init");
+		// this.imgExport.nativeElement.src=this.labelSvg.link;
+		//  let canvas = this.canExport.nativeElement;
+		//  let ctx = canvas.getContext('2d');
+		//  ctx.fillStyle="balck";
+		//  ctx.fillRect(0,0,3189,1890);
+    //
+		//  // let image = new Image();
+		//  // image.src=this.labelSvg.link;
+		//  ctx.drawImage(this.imgExport.nativeElement, 0, 0, 3189, 1890);
   }
 
 	saveImg():void{
-		this.beer.seed = this.labelSvg.seed;
+		this.beer.seed = this.labelCanvas.seed;
 	}
 
 	// On crée une méthode qui s'occupe de la redirection

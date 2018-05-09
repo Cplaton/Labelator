@@ -8,8 +8,8 @@ export const BEERS: Beer[] = [
 		ibu: 35,
 		ebc: 5,
 		alcool: 6,
-		picture: "app/labels/assets/glyphicons/png/glyphicons-1-glass.png",
-		text: "Ingredients : ...",
+		picture: "app/labels/assets/icons/sorachi.png",
+		text: "Ingrédients : Eau, Malt d'orge, Malt de blé,\nFroment, Houblon Sorachi Ace,\nSucre, Levure  ",
 		types: ["IPA", "Blanche"],
 		created: new Date(),
 		seed: ""

@@ -4,9 +4,9 @@ vertical-align: middle;
 padding-top: 2.5%;
 overflow: hidden;">
   <a [href]="link">
-  <canvas id="canvasImg" width="3189" height="1890" #canvasImg>
-
-  </canvas>
+  <img id="dlImg" #dlImg />
+  <!-- <canvas style="display:none;" id="canvasImg" width="3189" height="1890" hidden #canvasImg>
+  </canvas> -->
 </a>
 </div>
 <h3 *ngIf="!beer" class="center">Problème label...</h3>

@@ -89,11 +89,10 @@
           </div>
         </div>
 
+        <!-- Beer text -->
         <div class="form-group">
           <label for="text">Composition</label>
           <textarea class="form-control" id="text"
-                 pattern="^.+$"
-                 required
                  [(ngModel)]="beer.text" name="text"
                  #text="ngModel">
           </textarea>
@@ -122,6 +121,7 @@
         </div>
         </div>
 
+        <!-- Beer seed -->
         <div class="form-group">
           <label for="seed">Seed</label>
           <input type="text" class="form-control" id="seed"

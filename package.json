@@ -1,6 +1,6 @@
 {
-  "name": "ng2-beerLabel-app",
-  "version": "1.0.0",
+  "name": "Labelator",
+  "version": "0.0.1",
   "description": "A awesome app for creating beer labels with angular",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
@@ -14,8 +14,8 @@
     "tsc:w": "tsc -w"
   },
   "keywords": [],
-  "author": "",
-  "license": "MIT",
+  "author": "Cplaton",
+  "license": "GPL-3.0",
   "dependencies": {
     "@angular/common": "~4.0.0",
     "@angular/compiler": "~4.0.0",

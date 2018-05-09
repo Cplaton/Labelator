@@ -77,6 +77,7 @@ export class BeerService {
     return "hsl("+hue+","+saturation+"%,"+lightness+"%)";
   }
 
+
   private typeToColor(type: Array<string>): number {
 
       let color: number;

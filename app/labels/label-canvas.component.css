@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "AmaticSC";
+  src: url("app/labels/assets/fonts/Amatic_SC/AmaticSC-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url("app/labels/assets/fonts/Oswald/Oswald-Regular.ttf") format("truetype");
+}
