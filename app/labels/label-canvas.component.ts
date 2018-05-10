@@ -96,12 +96,12 @@ export class LabelCanvasComponent implements OnInit {
 
     //Ingrédients
     ctx.fillStyle=this.rectFill;
-    ctx.font = "40pt Oswald";
+    ctx.font = "italic 40pt Oswald";
     ctx.textAlign = "left";
     let lines = this.beer.text.split('\n');
     for(let i=0;i<lines.length;i++)
     {
-      ctx.translate( this.canvasImg.width - (lines.length-i)*40, 1870 );
+      ctx.translate( this.canvasImg.width - ((lines.length-(i+1))*60)-10, 1870 );
       ctx.rotate(3*Math.PI/2);
       ctx.fillText(lines[i],0,0);
       ctx.setTransform(1, 0, 0, 1, 0, 0);
