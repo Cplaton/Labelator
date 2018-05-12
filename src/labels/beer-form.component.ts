@@ -6,8 +6,8 @@ import { Beer } from './beer';
 
 @Component({
   selector: 'beer-form',
-  templateUrl: 'app/labels/beer-form.component.html',
-  styleUrls: ['app/labels/beer-form.component.css']
+  templateUrl: './beer-form.component.html',
+  styleUrls: ['./beer-form.component.css']
 })
 export class BeerFormComponent implements OnInit {
 

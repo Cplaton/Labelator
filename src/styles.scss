@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  margin: 0;
+  padding: 0;
+
+  height: 100%;
+}
+
+@font-face {
+  font-family: "AmaticSC";
+  src: url("./labels/assets/fonts/Amatic_SC/AmaticSC-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url("./labels/assets/fonts/Oswald/Oswald-Regular.ttf") format("truetype");
+}

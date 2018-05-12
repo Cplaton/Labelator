@@ -6,8 +6,8 @@ import { Beer } from './beer';
 
 @Component({
   selector: 'label-canvas',
-  templateUrl: 'app/labels/label-canvas.component.html',
-  styleUrls: ['app/labels/label-canvas.component.css']
+  templateUrl: './label-canvas.component.html',
+  styleUrls: ['./label-canvas.component.css']
 })
 
 export class LabelCanvasComponent implements OnInit {

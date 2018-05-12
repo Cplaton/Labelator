@@ -5,8 +5,8 @@ import { Beer } from './beer';
 
 @Component({
   selector: 'label-svg',
-  templateUrl: 'app/labels/label-svg.component.html',
-  styleUrls: ['app/labels/label-svg.component.css']
+  templateUrl: './label-svg.component.html',
+  styleUrls: ['./label-svg.component.css']
 })
 
 export class LabelSvgComponent implements OnInit {
